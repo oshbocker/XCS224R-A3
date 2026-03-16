@@ -81,6 +81,7 @@ target/
 # More
 uv.lock
 .python-version
+src/submission/data/
 
 # IPython
 profile_default/
