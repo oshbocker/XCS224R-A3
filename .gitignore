@@ -78,6 +78,10 @@ target/
 # Jupyter Notebook
 .ipynb_checkpoints
 
+# More
+uv.lock
+.python-version
+
 # IPython
 profile_default/
 ipython_config.py
