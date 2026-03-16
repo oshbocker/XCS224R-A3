@@ -71,7 +71,12 @@ class IQLAgent(DQNAgent):
         # HINT: Access critic using self.exploitation_critic 
         # (critic trained in the offline setting)
         # *** START CODE HERE ***
+        q_sa = self.get_qvals(critic=self.exploitation_critic, obs=ob_no, action=ac_na, use_v=False)
+        v_s = self.get_qvals(critic=self.exploitation_critic, obs=ob_no, action=None, use_v=True)
+        a = (q_sa - v_s).detach()
         # *** END CODE HERE ***
+
+        return a
         
     def train(self, ob_no, ac_na, re_n, next_ob_no, terminal_n):
         log = {}
@@ -113,6 +118,8 @@ class IQLAgent(DQNAgent):
             # TODO 2): Calculate the awac actor loss (actor_loss) using the awac_actor's update function
             
             # *** START CODE HERE ***
+            a = self.estimate_advantage(ob_no, ac_na, re_n, next_ob_no, terminal_n)
+            actor_loss = self.awac_actor.update(observations=ob_no, actions=ac_na, adv_n=a)
             # *** END CODE HERE ***
             
             
