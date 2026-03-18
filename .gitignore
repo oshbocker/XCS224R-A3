@@ -82,6 +82,7 @@ target/
 uv.lock
 .python-version
 src/submission/data/
+a3.zip
 
 # IPython
 profile_default/
